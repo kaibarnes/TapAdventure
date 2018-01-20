@@ -34,13 +34,32 @@ export default class App extends React.Component {
     this.unshowModal = this.unshowModal.bind(this);
   }
   reset() {
-    this.setState({
-      money: 0,
-      damage: 1,
-      health: 10,
-      showModal: false,
-      currentMonster: 0
-    });
+    Alert.alert(
+      'Are you sure you want to start again?',
+      '',
+      [
+        {
+          text: 'Yes',
+          onPress: () => {
+            this.setState({
+              money: 0,
+              damage: 1,
+              health: 10,
+              showModal: false,
+              currentMonster: 0
+            });
+          }
+        },
+        {
+          text: 'Cancel',
+          onPress: () => {
+            this.setState({ showModal: false });
+          },
+          style: 'cancel'
+        }
+      ],
+      { onDismiss: () => {} }
+    );
   }
   showModal() {
     this.setState({ showModal: true });
