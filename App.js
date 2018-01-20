@@ -4,7 +4,8 @@ import {
   Text,
   View,
   Image,
-  TouchableWithoutFeedback
+  TouchableWithoutFeedback,
+  Alert
 } from 'react-native';
 import ActionButton from './components/ActionButton';
 import Money from './components/Money';
@@ -48,20 +49,14 @@ export default class App extends React.Component {
     this.setState({ showModal: false });
   }
   reduceHealth() {
-    this.setState(
-      { health: this.state.health - this.state.damage },
-      console.log(this.state.health, this.state.damage)
-    );
+    this.setState({ health: this.state.health - this.state.damage });
   }
-  handleDeath(reward, maxHealth) {
-    this.setState(
-      {
-        money: this.state.money + reward,
-        health: maxHealth,
-        currentMonster: this.state.currentMonster + 1
-      },
-      () => console.log(this.state.currentMonster)
-    );
+  handleDeath(monsters) {
+    this.setState({
+      money: this.state.money + monsters[this.state.currentMonster].reward,
+      health: monsters[this.state.currentMonster + 1].maxHealth,
+      currentMonster: this.state.currentMonster + 1
+    });
   }
   upgrade(damage, upgradePrice) {
     this.setState({
