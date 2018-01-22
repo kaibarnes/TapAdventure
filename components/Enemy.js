@@ -10,7 +10,6 @@ export default class Enemy extends React.Component {
   componentWillReceiveProps(nextProps) {
     console.log(this.props.monsters[this.props.currentMonster]);
     if (nextProps.health < 1 && this.props.health >= 1) {
-      const reward = this.state.activeMonster.reward;
       this.props.onDeath(this.props.monsters);
     }
   }
