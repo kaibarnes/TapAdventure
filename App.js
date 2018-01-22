@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import ActionButton from './components/ActionButton';
 import Money from './components/Money';
-import EquipmentOne from './components/EquipmentOne';
 import OwnedUpgrade from './components/OwnedUpgrade';
 import UpgradeSlot from './components/UpgradeSlot';
 import Enemy from './components/Enemy';
@@ -86,27 +85,21 @@ export default class App extends React.Component {
   render() {
     const upgrades = [
       {
-        name: 'Dagger',
+        name: 'Shortsword',
         damage: 5,
         upgradePrice: 10,
-        image: require('./assets/weapons/dagger.png')
-      },
-      {
-        name: 'Shortsword',
-        damage: 20,
-        upgradePrice: 100,
         image: require('./assets/weapons/shortsword.png')
       },
       {
         name: 'Longsword',
-        damage: 50,
-        upgradePrice: 1000,
+        damage: 20,
+        upgradePrice: 100,
         image: require('./assets/weapons/longsword.png')
       },
       {
         name: 'Greatsword',
-        damage: 200,
-        upgradePrice: 10000,
+        damage: 50,
+        upgradePrice: 500,
         image: require('./assets/weapons/greatsword.png')
       }
     ];
@@ -131,7 +124,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Image
-          source={require('./assets/backgrounds/plains.png')}
+          source={require('./assets/backgrounds/rock.png')}
           style={styles.backgroundImage}
         />
         <View style={styles.settingsIcon}>
@@ -193,6 +186,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   upgradesContainer: {
+    marginTop: 10,
     height: 100,
     flexDirection: 'row'
   }

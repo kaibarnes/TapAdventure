@@ -6,7 +6,6 @@ import {
   TouchableHighlight,
   ImageBackground
 } from 'react-native';
-import EquipmentOne from './EquipmentOne';
 import OwnedUpgrade from './OwnedUpgrade';
 
 export default class UpgradeSlot extends React.Component {
@@ -17,7 +16,6 @@ export default class UpgradeSlot extends React.Component {
     this.renderEquipment = this.renderEquipment.bind(this);
     this.handlePress = this.handlePress.bind(this);
   }
-  //somehow handle this in the app instead?
   handlePress() {
     const { money, damage, upgradePrice } = this.props;
     if (money > upgradePrice) {
