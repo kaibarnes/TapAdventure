@@ -11,10 +11,10 @@ import {
 const Settings = ({ children, visible, unshowModal, reset }) => {
   const {
     containerStyle,
-    innerContainerStyle,
+    modalStyle,
     exitContainerStyle,
     exitButtonStyle,
-    textStyle,
+    titleStyle,
     resetButtonStyle,
     resetButtonTextStyle
   } = styles;
@@ -27,14 +27,14 @@ const Settings = ({ children, visible, unshowModal, reset }) => {
       visible={visible}
     >
       <View style={containerStyle}>
-        <View style={innerContainerStyle}>
+        <View style={modalStyle}>
           <TouchableHighlight style={exitContainerStyle} onPress={unshowModal}>
             <Image
               style={exitButtonStyle}
               source={require('../assets/icons/exit.png')}
             />
           </TouchableHighlight>
-          <Text style={textStyle}>{children}</Text>
+          <Text style={titleStyle}>{children}</Text>
           {/* <TouchableHighlight style={resetButtonStyle}>
             <Text style={resetButtonTextStyle}>Reset</Text>
           </TouchableHighlight> */}
@@ -53,7 +53,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center'
   },
-  innerContainerStyle: {
+  modalStyle: {
     backgroundColor: 'white',
     position: 'relative',
     height: 400,
@@ -72,7 +72,7 @@ const styles = {
     width: 25,
     height: 25
   },
-  textStyle: {
+  titleStyle: {
     flex: 1,
     fontSize: 18,
     textAlign: 'center',
