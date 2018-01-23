@@ -124,7 +124,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Image
-          source={require('./assets/backgrounds/rock.png')}
+          source={require('./assets/backgrounds/plains.png')}
           style={styles.backgroundImage}
         />
         <View style={styles.settingsIcon}>
@@ -155,9 +155,7 @@ export default class App extends React.Component {
           reset={this.reset}
           unshowModal={this.unshowModal}
           visible={this.state.showModal}
-        >
-          Modal Test
-        </Settings>
+        />
       </View>
     );
   }
