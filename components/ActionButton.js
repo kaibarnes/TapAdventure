@@ -27,21 +27,23 @@ export default class ActionButton extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  backgroundImage: {
-    height: 90,
-    width: 90,
-    borderRadius: 45
-  },
   container: {
     flex: 1
   },
   buttonStyles: {
-    backgroundColor: 'darkred',
+    backgroundColor: 'black',
     height: 100,
     width: 100,
     borderRadius: 50,
+    borderColor: '#e03c3c',
+    borderWidth: 10,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  backgroundImage: {
+    height: 90,
+    width: 90,
+    borderRadius: 45
   },
   textStyles: {
     fontSize: 30

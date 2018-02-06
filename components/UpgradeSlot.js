@@ -53,31 +53,35 @@ export default class UpgradeSlot extends React.Component {
 
 const styles = StyleSheet.create({
   imageStyles: {
-    height: 50,
-    width: 50
+    height: 70,
+    width: 70,
+    borderRadius: 35,
+    justifyContent: 'flex-end',
+    alignItems: 'center'
   },
-  textStyles: {},
   container: {
-    backgroundColor: '#A9A9A9',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 60,
-    width: 60,
-    borderRadius: 30,
+    height: 70,
+    width: 70,
+    borderRadius: 35,
     justifyContent: 'center',
     alignItems: 'center',
     overflow: 'hidden'
   },
   buttonStyles: {
     backgroundColor: 'black',
-    height: 60,
-    width: 60,
-    borderRadius: 30,
+    height: 70,
+    width: 70,
+    borderColor: 'black',
+    borderWidth: 3,
+    borderRadius: 35,
     justifyContent: 'center',
     alignItems: 'center'
   },
   textStyles: {
-    color: 'white',
-    fontSize: 20
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white'
   }
 });
