@@ -12,7 +12,7 @@ import Money from './components/Money';
 import OwnedUpgrade from './components/OwnedUpgrade';
 import UpgradeSlot from './components/UpgradeSlot';
 import Enemy from './components/Enemy';
-import Settings from './components/Settings';
+import CustomModal from './components/CustomModal';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,6 +22,7 @@ export default class App extends React.Component {
       damage: 1,
       health: 10,
       showModal: false,
+      showCompletionModal: false,
       currentMonster: 0
     };
 
@@ -45,6 +46,7 @@ export default class App extends React.Component {
               damage: 1,
               health: 10,
               showModal: false,
+              showCompletionModal: false,
               currentMonster: 0
             });
           }
@@ -66,15 +68,25 @@ export default class App extends React.Component {
   unshowModal() {
     this.setState({ showModal: false });
   }
+  showCompletionModal() {
+    this.setState({ showCompletionModal: true });
+  }
+  unshowCompletionModal() {
+    this.setState({ showCompletionModal: false });
+  }
   reduceHealth() {
     this.setState({ health: this.state.health - this.state.damage });
   }
   handleDeath(monsters) {
-    this.setState({
-      money: this.state.money + monsters[this.state.currentMonster].reward,
-      health: monsters[this.state.currentMonster + 1].maxHealth,
-      currentMonster: this.state.currentMonster + 1
-    });
+    if (this.state.currentMonster === monsters.length - 1) {
+      this.showCompletionModal();
+    } else {
+      this.setState({
+        money: this.state.money + monsters[this.state.currentMonster].reward,
+        health: monsters[this.state.currentMonster + 1].maxHealth,
+        currentMonster: this.state.currentMonster + 1
+      });
+    }
   }
   upgrade(damage, upgradePrice) {
     this.setState({
@@ -95,13 +107,13 @@ export default class App extends React.Component {
         damage: 20,
         upgradePrice: 100,
         image: require('./assets/weapons/longsword.png')
-      },
-      {
-        name: 'Greatsword',
-        damage: 50,
-        upgradePrice: 500,
-        image: require('./assets/weapons/greatsword.png')
       }
+      // {
+      //   name: 'Greatsword',
+      //   damage: 50,
+      //   upgradePrice: 500,
+      //   image: require('./assets/weapons/axe3.png')
+      // }
     ];
     const monsters = [
       {
@@ -151,11 +163,26 @@ export default class App extends React.Component {
             />
           ))}
         </View>
-        <Settings
+        <CustomModal
           reset={this.reset}
           unshowModal={this.unshowModal}
-          visible={this.state.showModal}
-        />
+          showModal={this.state.showModal}
+          canClose
+          title="Start Again!"
+        >
+          <Text>Fancy another go?</Text>
+          <Text>Why not try again from the start?</Text>
+        </CustomModal>
+
+        <CustomModal
+          reset={this.reset}
+          unshowModal={this.unshowCompletionModal}
+          showModal={this.state.showCompletionModal}
+          title="Congratulation!"
+        >
+          <Text>You completed my mini game</Text>
+          <Text>Thanks for playing</Text>
+        </CustomModal>
       </View>
     );
   }
