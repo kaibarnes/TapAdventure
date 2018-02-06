@@ -8,7 +8,14 @@ import {
   Button
 } from 'react-native';
 
-const Settings = ({ visible, unshowModal, reset }) => {
+const CustomModal = ({
+  showModal,
+  unshowModal,
+  canClose,
+  reset,
+  title,
+  children
+}) => {
   const {
     containerStyle,
     modalStyle,
@@ -21,29 +28,34 @@ const Settings = ({ visible, unshowModal, reset }) => {
     header
   } = styles;
 
+  const showCloseButton = () => {
+    return (
+      <TouchableHighlight style={exitContainerStyle} onPress={unshowModal}>
+        <Image
+          style={exitButtonStyle}
+          source={require('../assets/icons/exit.png')}
+        />
+      </TouchableHighlight>
+    );
+  };
+
   return (
     <Modal
       animationType="slide"
       onRequestClose={() => {}}
       transparent
-      visible={visible}
+      visible={showModal}
     >
       <View style={containerStyle}>
         <View style={modalStyle}>
-          <TouchableHighlight style={exitContainerStyle} onPress={unshowModal}>
-            <Image
-              style={exitButtonStyle}
-              source={require('../assets/icons/exit.png')}
-            />
-          </TouchableHighlight>
+          {canClose ? showCloseButton() : null}
           <Image
             style={modalImage}
             source={require('../assets/backgrounds/plains.png')}
           />
           <View style={textContainer}>
-            <Text style={header}>Start again!</Text>
-            <Text>Fancy another go?</Text>
-            <Text>Why not try again from the start?</Text>
+            <Text style={header}>{title}</Text>
+            {children}
           </View>
           <TouchableHighlight
             onPress={reset}
@@ -116,4 +128,4 @@ const styles = {
   }
 };
 
-export default Settings;
+export default CustomModal;
