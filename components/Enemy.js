@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { View, Image } from 'react-native';
 
 export default class Enemy extends React.Component {
   constructor(props) {
@@ -8,7 +8,7 @@ export default class Enemy extends React.Component {
     this.state = { activeMonster: monsters[currentMonster] };
   }
   componentWillReceiveProps(nextProps) {
-    console.log(this.props.monsters[this.props.currentMonster]);
+    // stops onDeath being called multiple times
     if (nextProps.health < 1 && this.props.health >= 1) {
       this.props.onDeath(this.props.monsters);
     }
@@ -16,10 +16,8 @@ export default class Enemy extends React.Component {
   render() {
     const { monsters, currentMonster } = this.props;
     const { maxHealth, image } = monsters[currentMonster];
-    const { health, damage } = this.props;
-    // 280 is the width I want for the health bar
-    // Find a better way so that it is responsive
-    const shownHealth = health / maxHealth * 280;
+    // 280 is the width of the health bar
+    const shownHealth = this.props.health / maxHealth * 280;
     return (
       <View style={styles.container}>
         <View style={[styles.healthBar, { width: shownHealth }]} />

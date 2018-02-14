@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 import ActionButton from './components/ActionButton';
 import Money from './components/Money';
-import OwnedUpgrade from './components/OwnedUpgrade';
 import UpgradeSlot from './components/UpgradeSlot';
 import Enemy from './components/Enemy';
 import CustomModal from './components/CustomModal';
@@ -75,11 +74,14 @@ export default class App extends React.Component {
     this.setState({ showCompletionModal: false });
   }
   reduceHealth() {
+    // reduces the current monster health by the current weapon damage
     this.setState({ health: this.state.health - this.state.damage });
   }
   handleDeath(monsters) {
+    // shows a completion modal when all monsters have been killed
     if (this.state.currentMonster === monsters.length - 1) {
       this.showCompletionModal();
+      // continues to the next monster if there are any remaining
     } else {
       this.setState({
         money: this.state.money + monsters[this.state.currentMonster].reward,
@@ -89,6 +91,7 @@ export default class App extends React.Component {
     }
   }
   upgrade(damage, upgradePrice) {
+    // buys new weapon from UpgradeSlot
     this.setState({
       damage: damage,
       money: this.state.money - upgradePrice
@@ -136,6 +139,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Image
+          // sets the background image
           source={require('./assets/backgrounds/plains.png')}
           style={styles.backgroundImage}
         />
@@ -154,6 +158,7 @@ export default class App extends React.Component {
         />
         <ActionButton handlePress={this.reduceHealth} />
         <View style={styles.upgradesContainer}>
+          {/* shows a row of all the upgrades */}
           {upgrades.map(upgrade => (
             <UpgradeSlot
               {...upgrade}
@@ -163,6 +168,7 @@ export default class App extends React.Component {
             />
           ))}
         </View>
+        {/* reset modal */}
         <CustomModal
           reset={this.reset}
           unshowModal={this.unshowModal}
@@ -174,6 +180,7 @@ export default class App extends React.Component {
           <Text>Why not try again from the start?</Text>
         </CustomModal>
 
+        {/* completion modal */}
         <CustomModal
           reset={this.reset}
           unshowModal={this.unshowCompletionModal}

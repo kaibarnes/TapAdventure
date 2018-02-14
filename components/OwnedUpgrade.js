@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default class OwnedUpgrade extends React.Component {
   render() {
@@ -19,8 +19,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     borderRadius: 25,
-    justifyContent: 'center',
-    alignItems: 'center',
     overflow: 'hidden'
   },
   textStyles: {

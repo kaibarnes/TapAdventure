@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  Image
-} from 'react-native';
+import { StyleSheet, View, TouchableHighlight, Image } from 'react-native';
 
 export default class ActionButton extends React.Component {
   render() {
@@ -44,8 +38,5 @@ const styles = StyleSheet.create({
     height: 90,
     width: 90,
     borderRadius: 45
-  },
-  textStyles: {
-    fontSize: 30
   }
 });

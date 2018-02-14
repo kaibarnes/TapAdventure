@@ -1,12 +1,5 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  Modal,
-  Image,
-  TouchableHighlight,
-  Button
-} from 'react-native';
+import { Text, View, Modal, Image, TouchableHighlight } from 'react-native';
 
 const CustomModal = ({
   showModal,
@@ -48,6 +41,7 @@ const CustomModal = ({
     >
       <View style={containerStyle}>
         <View style={modalStyle}>
+          {/* will only render the close button if passed the canClose prop */}
           {canClose ? showCloseButton() : null}
           <Image
             style={modalImage}

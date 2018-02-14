@@ -18,12 +18,15 @@ export default class UpgradeSlot extends React.Component {
   }
   handlePress() {
     const { money, damage, upgradePrice } = this.props;
+    // checks if the player has enough money for the upgrade
     if (money > upgradePrice) {
       this.setState({ upgraded: true });
+      // passes the weapon damage and price back to the parent component
       this.props.handlePress(damage, upgradePrice);
     }
   }
   renderEquipment() {
+    // checks if the upgrade has already been purchased
     if (!this.state.upgraded) {
       return (
         <View>
@@ -44,6 +47,7 @@ export default class UpgradeSlot extends React.Component {
         </View>
       );
     }
+    // renders a greyed out component once purchased
     return <OwnedUpgrade />;
   }
   render() {
@@ -65,8 +69,6 @@ const styles = StyleSheet.create({
     height: 70,
     width: 70,
     borderRadius: 35,
-    justifyContent: 'center',
-    alignItems: 'center',
     overflow: 'hidden'
   },
   buttonStyles: {
